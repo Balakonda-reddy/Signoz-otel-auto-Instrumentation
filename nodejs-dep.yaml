@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-nodejs
+spec:
+  selector:
+    matchLabels:
+      app: sample-nodejs
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sample-nodejs
+      annotations:
+        instrumentation.opentelemetry.io/inject-nodejs: "true"
+    spec:
+      containers:
+      - name: app
+        image: balu139/sample-nodejs

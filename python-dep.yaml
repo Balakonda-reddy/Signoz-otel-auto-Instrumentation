@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-python
+spec:
+  selector:
+    matchLabels:
+      app: sample-python
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sample-python
+      annotations:
+        instrumentation.opentelemetry.io/inject-python: "true"
+    spec:
+      containers:
+      - name: app
+        image: balu139/sample-python
